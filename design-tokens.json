@@ -1,0 +1,43 @@
+{
+  "$source": "Computed styles from https://havensorthodontics.com (WordPress / X theme + Cornerstone), sampled 2026-10-17.",
+  "color": {
+    "brand": {
+      "blue": { "value": "#059DEF", "rgb": "5,157,239", "use": "section headings (H2/H3), primary buttons, Testimonials / Doctors / Locations bands, logo square" },
+      "navy": { "value": "#21408C", "rgb": "33,64,140", "use": "link and button-anchor color, footer nav links, blob shapes" },
+      "white": { "value": "#FFFFFF", "use": "H1 on hero, button text, logo script, secondary button background" }
+    },
+    "neutral": {
+      "gray-text": { "value": "#868686", "use": "body copy (Roboto 300 16px)" },
+      "footer": { "value": "#474142", "use": "footer background" },
+      "mist": { "value": "#D2DDE3", "use": "'Our Patient Is You' panel background" },
+      "ink": { "value": "#121212", "use": "near-black surface" },
+      "black": { "value": "#000000" }
+    },
+    "derived-tints": {
+      "$note": "Tints/shades of the two brand blues for illustration depth only (no new hues).",
+      "blue-100": "#E6F5FD",
+      "blue-300": "#69C4F5",
+      "navy-700": "#18306A"
+    }
+  },
+  "font": {
+    "family": "Roboto (Google Fonts)",
+    "weights": { "300": "body copy, H2/H3 headings", "400": "buttons, nav", "500": "location links", "700": "H1" },
+    "h1": "Roboto 700 70px / 84px, uppercase, white",
+    "h2": "Roboto 300 25.6px, letter-spacing 0.05em (1.28px), uppercase, #059DEF",
+    "h3": "Roboto 300 22.4px, letter-spacing 0.05em (1.12px), uppercase, #059DEF",
+    "body": "Roboto 300 16px / 22.4px, #868686"
+  },
+  "component": {
+    "button-primary": { "background": "#059DEF", "color": "#FFFFFF", "font": "Roboto 400 16px uppercase", "padding": "~16px 25px (49px tall)", "radius": "0" },
+    "button-secondary": { "background": "#FFFFFF", "color": "#059DEF", "font": "Roboto 400 16px uppercase", "radius": "0" },
+    "button-outline": { "background": "#FFFFFF", "border": "2px solid #059DEF", "color": "#059DEF", "radius": "0" },
+    "card": { "style": "full-bleed photo with uppercase white title bottom-left; hover reveals title + 'Learn More'" },
+    "legal-links": { "font": "Roboto 400 12px", "color": "#21408C on #474142 (as rendered)" }
+  },
+  "motifs": {
+    "logo": "White script 'HavenS' + 'ORTHODONTICS' under a #059DEF square crossed by two hand-drawn strokes (reads like a bracket with wire). public/assets/brand/logo-white.png (only a white variant exists on the site).",
+    "favicon": "Blue square + dark strokes. public/assets/brand/favicon-270.png",
+    "blob": "Organic blue/navy blobs with diagonal hatching (menu-blob-06.png, video-blob.png)."
+  }
+}

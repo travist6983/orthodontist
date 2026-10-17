@@ -1,0 +1,184 @@
+{
+  "$source": "Verbatim homepage copy from https://havensorthodontics.com, extracted 2026-10-17 (raw HTML + Chrome). Card titles appear twice on the live site (front + hover overlay); the duplicate is removed here.",
+  "meta": {
+    "title": "Orthodontist Canton, MI | Home | Havens Orthodontics",
+    "description": "Havens Orthodontics is a world-class orthodontist",
+    "favicon": "assets/brand/favicon-270.png"
+  },
+
+  "header": {
+    "logo": { "img": "assets/brand/logo-white.png", "alt": "Company logo", "href": "https://havensorthodontics.com" },
+    "links": [
+      { "text": "Text Us: 855-959-4430", "href": "sms:+18559594430", "icon": "mobile phone" },
+      { "text": "Call or Visit Our Locations", "href": "/contact-us/", "icon": "map marker", "note": "rendered as two lines: 'Call or Visit Our' / 'Locations'" },
+      { "text": "", "href": "tel:734-499-0563", "icon": "map marker (icon-only, mobile bar)", "a11y_label_to_add": "Call 734-499-0563" }
+    ],
+    "menu_button": "hamburger opens an off-canvas menu (also used on desktop)"
+  },
+
+  "nav": [
+    { "text": "About Us", "href": "https://havensorthodontics.com/about-us/", "children": [
+      { "text": "Meet the Doctors", "href": "https://havensorthodontics.com/?page_id=1429", "status": "404 at time of recon" },
+      { "text": "What Sets Us Apart", "href": "https://havensorthodontics.com/about-us/what-sets-us-apart/" } ] },
+    { "text": "Services", "href": "https://havensorthodontics.com/services/", "children": [
+      { "text": "Braces for Children", "href": "https://havensorthodontics.com/services/braces-for-children/" },
+      { "text": "Braces for Adults", "href": "https://havensorthodontics.com/services/braces-for-adults/" },
+      { "text": "Invisalign®", "href": "https://havensorthodontics.com/services/invisalign/" },
+      { "text": "Clear Braces", "href": "https://havensorthodontics.com/services/clear-braces/" } ] },
+    { "text": "Resources", "href": "https://havensorthodontics.com/resources/", "children": [
+      { "text": "Smile Gallery", "href": "https://havensorthodontics.com/resources/smile-gallery/" },
+      { "text": "Care for Braces", "href": "https://havensorthodontics.com/resources/care-for-braces/" },
+      { "text": "Orthodontics FAQ", "href": "https://havensorthodontics.com/resources/orthodontics-faq/" },
+      { "text": "Our Blog", "href": "https://havensorthodontics.com/resources/blog/" } ] },
+    { "text": "Patients", "href": "https://havensorthodontics.com/patients/", "children": [
+      { "text": "New Patient Forms", "href": "https://havensorthodontics.com/patients/new-patient-forms/" } ] },
+    { "text": "Contact Us", "href": "https://havensorthodontics.com/contact-us-2/", "children": [
+      { "text": "Canton", "href": "https://havensorthodontics.com/contact-us-2/canton/" },
+      { "text": "Clarkston", "href": "https://havensorthodontics.com/contact-us-2/clarkston/" },
+      { "text": "Imlay City", "href": "https://havensorthodontics.com/contact-us-2/imlay-city/" },
+      { "text": "St. Clair Shores", "href": "https://havensorthodontics.com/contact-us-2/st-clair-shores/" },
+      { "text": "Washington", "href": "https://havensorthodontics.com/contact-us-2/washington/" },
+      { "text": "Romeo", "href": "https://havensorthodontics.com/?page_id=2396", "status": "404 at time of recon" },
+      { "text": "Farmington", "href": "https://havensorthodontics.com/contact-us-2/farmington/" },
+      { "text": "Clawson", "href": "https://havensorthodontics.com/contact-us-2/clawson-2/" },
+      { "text": "Lapeer", "href": "https://havensorthodontics.com/contact-us-2/lapeer/" } ] }
+  ],
+
+  "sections": [
+    {
+      "id": "hero",
+      "background_video": { "src": "assets/video/hero-ambient.mp4", "original": "/wp-content/uploads/2022/03/havens-hero-home.mp4", "attrs": "autoplay loop muted playsinline (decorative)", "poster": "assets/img/poster-hero.webp" },
+      "h1": "Start Smiling Again",
+      "ctas": [
+        { "text": "new patient scheduling", "href": "https://onlinebooking.leadsigma.com/schedule/havens_orthodontics", "primary": true, "display": "uppercase via CSS" },
+        { "text": "About Us", "href": "/about-us/" }
+      ]
+    },
+    {
+      "id": "difference",
+      "h2": "The Havens Difference",
+      "cards": [
+        { "title": "Our Promise", "href": "/about-us/what-sets-us-apart/", "link_text": "Learn More", "image": "assets/img/card-promise.webp", "layout": "full width" },
+        { "title": "We Support Those Who Protect Us", "href": "/about-us/what-sets-us-apart/#support", "link_text": "Learn More", "image": "assets/img/card-support.webp" },
+        { "title": "Affordable & Flexible Finances", "href": "/about-us/what-sets-us-apart/#finances", "link_text": "Learn More", "image": "assets/img/card-finances.webp" },
+        { "title": "Our Products Are Made in the USA", "href": "/about-us/what-sets-us-apart/#usa", "link_text": "Learn More", "image": "assets/img/card-usa.webp" },
+        { "title": "No Invisalign Surcharge", "href": "/about-us/what-sets-us-apart/#invisalign", "link_text": "Learn More", "image": "assets/img/card-invisalign.webp" },
+        { "title": "Education", "href": "/about-us/what-sets-us-apart/#education", "link_text": "Learn More", "image": "assets/img/card-education.webp" },
+        { "title": "No Impressions Ever", "href": "/about-us/what-sets-us-apart/#impressions", "link_text": "Learn More", "image": "assets/img/card-impressions.webp" }
+      ]
+    },
+    {
+      "id": "philosophy",
+      "h3": "Our Philosophy",
+      "video": { "src": "assets/video/havens-philosophy.mp4", "original": "/wp-content/uploads/2022/03/havens-philosophy.mp4", "poster": "assets/img/poster-philosophy.webp", "poster_original": "/wp-content/uploads/2022/05/havens-custom-home-video-poster-v2.jpg", "controls": true, "duration": "2:17" },
+      "decor": "assets/brand/video-blob.webp"
+    },
+    {
+      "id": "new-patient",
+      "h3": "New Patient?",
+      "p": [
+        "At Havens Orthodontics, we use our expertise to provide our patients with a personalized experience. Whether you are a parent of a teenager or an adult who wants to improve your smile, you can rely on us. We have a state-of-the-art facility and can kick off the next stage of your oral health journey.",
+        "Your first visit is complimentary. Schedule your free consultation today. Your smile will thank you later."
+      ],
+      "ctas": [
+        { "text": "Why Choose Us", "href": "/about-us/what-sets-us-apart/" },
+        { "text": "new patient scheduling", "href": "https://onlinebooking.leadsigma.com/schedule/havens_orthodontics", "primary": true },
+        { "text": "Contact Us", "href": "/contact-us/", "style": "outline" }
+      ],
+      "images": ["assets/img/new-patient-1.webp", "assets/img/new-patient-2.webp", "assets/img/new-patient-3.webp"]
+    },
+    {
+      "id": "testimonials",
+      "h3": "Testimonials",
+      "video": { "src": "assets/video/havens-testimonials.mp4", "original": "/wp-content/uploads/2022/03/havens-testimonials.mp4", "poster": "assets/img/poster-testimonials.webp", "poster_original": "/wp-content/uploads/2022/03/havens-philosophy-video-poster.jpg", "controls": true, "duration": "6:50" }
+    },
+    {
+      "id": "doctors",
+      "image": { "src": "assets/img/doctors.webp", "original": "/wp-content/uploads/2022/05/havens-custom-home-grid-1.png", "alt": "Image" },
+      "h3": "Our Doctors",
+      "p": "Going beyond the needs and expectations of our patients is our philosophy, and in Dr. Havens’ skilled and dedicated hands, you’ll feel like the most important person in the room – because you are.",
+      "cta": { "text": "Learn More About Our Doctors", "href": "/about-us/meet-the-doctors/" }
+    },
+    {
+      "id": "audiences",
+      "cards": [
+        { "title": "Adult Patients", "href": "/services/braces-for-adults/", "link_text": "Learn More", "image": "assets/img/adult-patients.webp" },
+        { "title": "Why Age 7?", "href": "/services/braces-for-children/", "link_text": "Learn More", "image": "assets/img/why-age-7.webp" }
+      ]
+    },
+    {
+      "id": "goal",
+      "h3": "Our greatest goal is to provide the most individualized, comfortable, and effective orthodontic treatment."
+    },
+    {
+      "id": "our-patient",
+      "h3": "Our Patient Is You",
+      "p": "Because we believe that our patients deserve nothing but the best, we provide much more than just conventional orthodontic treatment.",
+      "cta": { "text": "See Real Results", "href": "/resources/smile-gallery/" },
+      "image": { "src": "assets/img/our-patient.webp", "original": "/wp-content/uploads/2022/05/Havens-Orthodontics08434adj.png", "alt": "Image" }
+    },
+    {
+      "id": "locations",
+      "h3": "Helping People Smile",
+      "links": [
+        { "text": "CANTON", "href": "/contact-us-2/canton/" },
+        { "text": "CLARKSTON", "href": "/contact-us-2/clarkston/" },
+        { "text": "CLAWSON", "href": "/contact-us-2/clawson", "note": "differs from nav (/contact-us-2/clawson-2/); currently redirects there" },
+        { "text": "FARMINGTON", "href": "/contact-us-2/farmington/" },
+        { "text": "IMLAY CITY", "href": "/contact-us-2/imlay-city/" },
+        { "text": "ST. CLAIR SHORES", "href": "/contact-us-2/st-clair-shores/" },
+        { "text": "WASHINGTON", "href": "/contact-us-2/washington/" },
+        { "text": "LAPEER", "href": "/contact-us-2/lapeer/" }
+      ],
+      "separator": " | ",
+      "note": "8 locations; the nav lists 9 (adds Romeo)."
+    }
+  ],
+
+  "footer": {
+    "social": [{ "label": "Facebook", "href": "https://www.facebook.com/HavensOrthodonticsWashington/" }],
+    "nav": [
+      { "text": "Home", "href": "https://havensorthodontics.com/" },
+      { "text": "About Us", "href": "https://havensorthodontics.com/about-us/" },
+      { "text": "Services", "href": "https://havensorthodontics.com/services/" },
+      { "text": "Patients", "href": "https://havensorthodontics.com/patients/" },
+      { "text": "Resources", "href": "https://havensorthodontics.com/resources/" },
+      { "text": "Our Blog", "href": "https://havensorthodontics.com/resources/blog/" },
+      { "text": "Contact Us", "href": "https://havensorthodontics.com/contact-us-2/" },
+      { "text": "Website Accessibility", "href": "https://havensorthodontics.com/website-accessibility/", "legal": true },
+      { "text": "HIPAA Policy", "href": "https://havensorthodontics.com/hipaa-policy/", "legal": true }
+    ],
+    "legal": {
+      "copyright": "Havens Orthodontics © 2026 All Rights Reserved",
+      "links": [
+        { "text": "Privacy Policy", "href": "https://havensorthodontics.com/privacy-policy/" },
+        { "text": "Sitemap", "href": "https://havensorthodontics.com/sitemap/" },
+        { "text": "Marketing by Roadside Dental Marketing", "href": "https://www.roadsidedentalmarketing.com/" }
+      ],
+      "style": "12px links on #474142; Website Accessibility + HIPAA Policy sit in the 16px footer nav row"
+    }
+  },
+
+  "forms": {
+    "homepage": "No form on the homepage.",
+    "scheduling": "External: https://onlinebooking.leadsigma.com/schedule/havens_orthodontics (opened in same tab on the live site). No embedded widget.",
+    "contact": "Contact form lives on /contact-us/ (not part of this homepage)."
+  },
+
+  "data_conflicts": [
+    "Locations: nav lists 9 offices including Romeo (?page_id=2396, 404); the 'Helping People Smile' list shows 8 (no Romeo).",
+    "Clawson: nav links /contact-us-2/clawson-2/; homepage list links /contact-us-2/clawson (redirects to clawson-2).",
+    "Meet the Doctors in nav links ?page_id=1429 (404); homepage 'Learn More About Our Doctors' links /about-us/meet-the-doctors/ (200)."
+  ],
+
+  "inventory_check": {
+    "matches_brief": true,
+    "differences": [
+      "Brief says 'footer lists 8' locations: on the page the 8-location list is the pre-footer 'Helping People Smile' band; the footer itself has the 9-link nav row only.",
+      "Brief omitted the decorative hero background video (havens-hero-home.mp4, autoplay muted loop). It is a third video and is kept.",
+      "Testimonials section has no 'home grid image' of its own: havens-custom-home-grid-1.png is the doctors photo in the 'Our Doctors' panel.",
+      "Two nav links return 404 (Meet the Doctors ?page_id=1429, Romeo ?page_id=2396). Kept exactly as-is per brief; flagged in QA.",
+      "Header tel:734-499-0563 is an icon-only link (map-marker icon) in the mobile bar."
+    ]
+  }
+}
