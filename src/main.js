@@ -99,7 +99,8 @@ function buildRoute() {
   if (!g.mob) {
     const gl = Math.max(26, phil.left / 2), gr = Math.min(g.W - 26, (test.right + g.W) / 2);
     const gapX = (adult.right + seven.left) / 2;
-    pts.push([X0, heroB], [X0, Y(cardsR, 0.02)], [X0, Y(cardsR, 0.5)], [X0, Y(cardsR, 1) + 10]);
+    const h2 = r('#diff-h');
+    pts.push([X0, heroB], [X0, heroB + 30], [h2.right + 40, Y(h2, 0.5)], [X0, Y(cardsR, 0) + 10], [X0, Y(cardsR, 0.5)], [X0, Y(cardsR, 1) + 10]);
     pts.push([lerp(X0, gl, 0.6), Y(phil, 0) - 70], [gl, Y(phil, 0.2)], [gl, Y(phil, 0.8)], [gl, Y(phil, 1) + 60]);
     const uy = Y(sched, 1) + 15;
     pts.push([gl, uy - 70], [gl + 60, uy], [sched.left - 6, uy + 1], [sched.left + sched.width / 2, uy - 3], [sched.right + 6, uy + 1], [Math.min(g.W - 60, sched.right + 120), uy + 24]);
