@@ -15,8 +15,8 @@ export const PRE_ATTACHED = [4, 5, 7]; // centrals + right canine are on the wir
 
 export function toothD(t) {
   const { w, h, k } = t, r = w * 0.3;
-  if (k === 'c') return `M${-w / 2},0 L${w / 2},0 L${w / 2},${h * 0.6} Q${w / 2},${h * 0.8} ${w * 0.12},${h * 0.97} Q0,${h * 1.02} ${-w * 0.12},${h * 0.97} Q${-w / 2},${h * 0.8} ${-w / 2},${h * 0.6} Z`;
-  return `M${-w / 2},0 L${w / 2},0 L${w / 2},${h - r} Q${w / 2},${h} ${w / 2 - r},${h} L${-w / 2 + r},${h} Q${-w / 2},${h} ${-w / 2},${h - r} Z`;
+  if (k === 'c') return `M${-w / 2},-18 L${w / 2},-18 L${w / 2},${h * 0.6} Q${w / 2},${h * 0.8} ${w * 0.12},${h * 0.97} Q0,${h * 1.02} ${-w * 0.12},${h * 0.97} Q${-w / 2},${h * 0.8} ${-w / 2},${h * 0.6} Z`;
+  return `M${-w / 2},-18 L${w / 2},-18 L${w / 2},${h - r} Q${w / 2},${h} ${w / 2 - r},${h} L${-w / 2 + r},${h} Q${-w / 2},${h} ${-w / 2},${h - r} Z`;
 }
 
 // aligned + crowded tooth placements (center x, gum-line y, rotation)
@@ -94,8 +94,27 @@ export function el(tag, attrs = {}, parent) {
 }
 
 export const BRACKET_SVG = (clear = false) => clear
-  ? '<rect x="-7" y="-7" width="14" height="14" rx="3" class="bk-body bk-clear"/><path d="M-7,0H7" class="bk-slot bk-slot-clear"/><rect x="-4.5" y="-4.5" width="4" height="3" rx="1" class="bk-shine"/>'
-  : '<rect x="-7" y="-7" width="14" height="14" rx="3" class="bk-body"/><path d="M-7,0H7" class="bk-slot"/><rect x="-4.5" y="-4.5" width="4" height="3" rx="1" class="bk-shine"/>';
+  ? '<g class="bk-in"><rect x="-7" y="-7" width="14" height="14" rx="3" class="bk-body bk-clear"/><path d="M-7,0H7" class="bk-slot bk-slot-clear"/><rect x="-4.5" y="-4.5" width="4" height="3" rx="1" class="bk-shine"/></g>'
+  : '<g class="bk-in"><rect x="-7" y="-7" width="14" height="14" rx="3" class="bk-body"/><path d="M-7,0H7" class="bk-slot"/><rect x="-4.5" y="-4.5" width="4" height="3" rx="1" class="bk-shine"/></g>';
+
+// ---- the mouth: simple line-art lips around the arch. m = smile (0 relaxed → 1 big smile).
+// Teeth are clipped to the opening, so tooth tops stay tucked under the upper lip (no gums drawn).
+export function mouth(m = 0) {
+  const f = (n) => n.toFixed(1);
+  const xc = 200 + 18 * m, yc = 22 - 24 * m;          // corners lift and widen as the smile grows
+  const ly = 84 + 12 * m;                              // lower lip edge drops a little to show more teeth
+  // inner edges (the opening), left → right
+  const upIn = `C${f(-xc * 0.86)},${f(yc + 5)} ${f(-xc * 0.5)},10 0,10 C${f(xc * 0.5)},10 ${f(xc * 0.86)},${f(yc + 5)} ${f(xc)},${f(yc)}`;
+  const loInRev = `C${f(xc * 0.8)},${f(yc + 40 + 10 * m)} ${f(xc * 0.4)},${f(ly)} 0,${f(ly)} C${f(-xc * 0.4)},${f(ly)} ${f(-xc * 0.8)},${f(yc + 40 + 10 * m)} ${f(-xc)},${f(yc)}`;
+  const opening = `M${f(-xc)},${f(yc)} ${upIn} ${loInRev} Z`;
+  // outer contour with rounded corners; lips = outer minus opening (evenodd)
+  const xo = xc + 5, lo = ly + 21;
+  const outer = `M${f(-xo)},${f(yc - 5)} C${f(-xc * 0.8)},${f(yc - 22)} -62,-15 -17,-10 Q0,-3 17,-10 C62,-15 ${f(xc * 0.8)},${f(yc - 22)} ${f(xo)},${f(yc - 5)} Q${f(xc + 13)},${f(yc)} ${f(xo)},${f(yc + 5)} C${f(xc * 0.78)},${f(yc + 58 + 10 * m)} ${f(xc * 0.4)},${f(lo)} 0,${f(lo)} C${f(-xc * 0.4)},${f(lo)} ${f(-xc * 0.78)},${f(yc + 58 + 10 * m)} ${f(-xo)},${f(yc + 5)} Q${f(-xc - 13)},${f(yc)} ${f(-xo)},${f(yc - 5)} Z`;
+  const lips = `${outer} ${opening}`;
+  const shine = `M${f(-xc * 0.26)},${f(lo - 8)} Q0,${f(lo - 4)} ${f(xc * 0.26)},${f(lo - 8)}`;
+  const dimL = `M${f(-xc - 18)},${f(yc - 9)} q-7,9 0,18`, dimR = `M${f(xc + 18)},${f(yc - 9)} q7,9 0,18`;
+  return { opening, lips, shine, dimL, dimR };
+}
 
 export function smileDefs(defs) {
   if (defs.querySelector('#toothShade')) return;
@@ -107,10 +126,15 @@ export function smileDefs(defs) {
 
 // A drawable arch. Teeth + brackets as <g> moved by transform only.
 export class Arch {
-  constructor(parent, { brackets = true } = {}) {
+  constructor(parent, { brackets = true, id = 'arch' } = {}) {
     this.g = el('g', { class: 'arch' }, parent);
-    el('ellipse', { cx: 0, cy: 38, rx: 230, ry: 92, fill: 'url(#archGlow)', class: 'arch-glow' }, this.g);
-    this.teethG = el('g', { class: 'teeth' }, this.g);
+    el('ellipse', { cx: 0, cy: 40, rx: 250, ry: 110, fill: 'url(#archGlow)', class: 'arch-glow' }, this.g);
+    // mouth opening (soft tint behind the teeth) + the clip that tucks tooth tops under the upper lip
+    const defs = parent.ownerSVGElement ? parent.ownerSVGElement.querySelector('defs') : parent.querySelector('defs');
+    this.clip = el('clipPath', { id: id + 'Mouth' }, defs);
+    this.clipPath = el('path', {}, this.clip);
+    this.opening = el('path', { class: 'mouth-open' }, this.g);
+    this.teethG = el('g', { class: 'teeth', 'clip-path': `url(#${id}Mouth)` }, this.g);
     this.wire = el('path', { class: 'arch-wire', fill: 'none' }, this.g);
     this.bG = el('g', { class: 'brackets' }, this.g);
     this.teeth = TEETH.map((t, i) => {
@@ -131,6 +155,28 @@ export class Arch {
     }
     this.bpts = pts;
     return pts;
+  }
+  // lips live in their own group so callers can stack them above an external wire
+  makeLips(parent) {
+    this.lips = el('g', { class: 'lips' }, parent);
+    this.lip = el('path', { class: 'lip', 'fill-rule': 'evenodd' }, this.lips);
+    this.lipShine = el('path', { class: 'lip-shine' }, this.lips);
+    this.dimL = el('path', { class: 'dimple' }, this.lips);
+    this.dimR = el('path', { class: 'dimple' }, this.lips);
+    return this.lips;
+  }
+  smile(m) {
+    if (this._m !== undefined && Math.abs(m - this._m) < 0.002) return;
+    this._m = m;
+    const M = mouth(m);
+    this.clipPath.setAttribute('d', M.opening);
+    this.opening.setAttribute('d', M.opening);
+    if (this.lips) {
+      this.lip.setAttribute('d', M.lips);
+      this.lipShine.setAttribute('d', M.shine);
+      this.dimL.setAttribute('d', M.dimL); this.dimR.setAttribute('d', M.dimR);
+      this.lips.style.setProperty('--dimple', clamp((m - 0.55) / 0.35).toFixed(3));
+    }
   }
   placeBracket(i, x, y, r = 0, s = 1, o = 1) {
     const b = this.brackets[i];

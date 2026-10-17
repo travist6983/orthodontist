@@ -86,6 +86,14 @@
   <section class="hero" id="hero">
     <div class="hero-stage">
       <div class="hero-media" aria-hidden="true">
+        <svg class="hero-blob" viewBox="0 0 400 400" aria-hidden="true" focusable="false">
+          <defs><pattern id="hatch" width="9" height="9" patternUnits="userSpaceOnUse" patternTransform="rotate(-38)"><rect width="3.2" height="9" fill="#21408C"/></pattern></defs>
+          <path d="M92 214c-30-62 8-140 82-150 54-7 74 30 118 26 52-5 92 40 82 98-9 56-62 74-104 100-50 31-118 40-152 2-22-24-12-50-26-76z" fill="#059DEF"/>
+          <path d="M262 64c40-14 98 10 104 58 6 40-30 58-62 50-28-7-34-30-60-40-26-11-18-56 18-68z" fill="url(#hatch)" opacity=".7"/>
+          <circle cx="76" cy="118" r="14" fill="none" stroke="#21408C" stroke-width="5"/>
+          <path d="M330 300l14 14m0-14l-14 14" stroke="#21408C" stroke-width="5" stroke-linecap="round"/>
+          <path d="M120 330l18-8-4 20z" fill="none" stroke="#21408C" stroke-width="4" stroke-linejoin="round"/>
+        </svg>
         <video class="hero-video" id="heroVideo" muted loop playsinline preload="none" data-poster="assets/img/poster-hero.webp" data-src="assets/video/hero-ambient.mp4"></video>
       </div>
       <div class="wrap hero-grid">
@@ -105,7 +113,7 @@
   <!-- ================= THE HAVENS DIFFERENCE ================= -->
   <section class="sec difference" id="difference" aria-labelledby="diff-h">
     <div class="wrap">
-      <h2 class="h2 center" id="diff-h">The Havens Difference</h2>
+      <h2 class="h2 rv" id="diff-h">The Havens Difference</h2>
       <ul class="cards">
         <li class="card" data-i="0"><a href="/about-us/what-sets-us-apart/"><img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="assets/img/card-promise.webp" alt="" width="1440" height="500" loading="lazy" decoding="async" fetchpriority="low"><span class="card-t"><i class="brk" aria-hidden="true"></i>Our Promise</span><span class="card-more">Learn More</span></a></li>
         <li class="card" data-i="1"><a href="/about-us/what-sets-us-apart/#support"><img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="assets/img/card-support.webp" alt="" width="900" height="675" loading="lazy" decoding="async" fetchpriority="low"><span class="card-t"><i class="brk" aria-hidden="true"></i>We Support Those Who Protect Us</span><span class="card-more">Learn More</span></a></li>
@@ -122,7 +130,7 @@
   <section class="sec philosophy" id="philosophy" aria-labelledby="phil-h">
     <img class="phil-blob" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="assets/brand/video-blob.webp" alt="" width="2000" height="1111" loading="lazy" decoding="async" fetchpriority="low">
     <div class="wrap">
-      <h3 class="h3 center" id="phil-h">Our Philosophy</h3>
+      <h3 class="h3 center rv" id="phil-h">Our Philosophy</h3>
       <div class="vid" data-src="assets/video/havens-philosophy.mp4">
         <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="assets/img/poster-philosophy.webp" alt="" width="1400" height="787" loading="lazy" decoding="async" fetchpriority="low">
         <button class="vid-play" type="button" aria-label="Play Our Philosophy video (2:17)"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6.5l9 5.5-9 5.5z" fill="currentColor"/></svg></button>
@@ -133,15 +141,15 @@
   <!-- ================= NEW PATIENT ================= -->
   <section class="sec newpatient" id="new-patient" aria-labelledby="np-h">
     <div class="wrap np-grid">
-      <div class="np-photos">
+      <div class="np-photos rv">
         <img class="np-1" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="assets/img/new-patient-1.webp" alt="" width="900" height="601" loading="lazy" decoding="async" fetchpriority="low">
         <img class="np-2" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="assets/img/new-patient-2.webp" alt="" width="700" height="467" loading="lazy" decoding="async" fetchpriority="low">
         <img class="np-3" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="assets/img/new-patient-3.webp" alt="" width="600" height="453" loading="lazy" decoding="async" fetchpriority="low">
       </div>
       <div class="np-copy">
-        <h3 class="h3" id="np-h">New Patient?</h3>
-        <p>At Havens Orthodontics, we use our expertise to provide our patients with a personalized experience. Whether you are a parent of a teenager or an adult who wants to improve your smile, you can rely on us. We have a state-of-the-art facility and can kick off the next stage of your oral health journey.</p>
-        <p>Your first visit is complimentary. Schedule your free consultation today. Your smile will thank you later.</p>
+        <h3 class="h3 rv" id="np-h">New Patient?</h3>
+        <p class="rv rv-d1">At Havens Orthodontics, we use our expertise to provide our patients with a personalized experience. Whether you are a parent of a teenager or an adult who wants to improve your smile, you can rely on us. We have a state-of-the-art facility and can kick off the next stage of your oral health journey.</p>
+        <p class="rv rv-d2">Your first visit is complimentary. Schedule your free consultation today. Your smile will thank you later.</p>
         <div class="ctas np-ctas">
           <a class="btn btn-primary" href="/about-us/what-sets-us-apart/">Why Choose Us</a>
           <a class="btn btn-primary" id="npSched" href="https://onlinebooking.leadsigma.com/schedule/havens_orthodontics">new patient scheduling</a>
@@ -154,7 +162,7 @@
   <!-- ================= TESTIMONIALS ================= -->
   <section class="sec band testimonials" id="testimonials" aria-labelledby="test-h">
     <div class="wrap">
-      <h3 class="h3 center on-blue" id="test-h">Testimonials</h3>
+      <h3 class="h3 center on-blue rv" id="test-h">Testimonials</h3>
       <div class="vid" data-src="assets/video/havens-testimonials.mp4">
         <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="assets/img/poster-testimonials.webp" alt="" width="900" height="504" loading="lazy" decoding="async" fetchpriority="low">
         <button class="vid-play" type="button" aria-label="Play Testimonials video (6:50)"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6.5l9 5.5-9 5.5z" fill="currentColor"/></svg></button>
@@ -167,7 +175,7 @@
     <div class="wrap">
       <div class="doc-panel">
         <img class="doc-img" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="assets/img/doctors.webp" alt="Image" width="561" height="441" loading="lazy" decoding="async" fetchpriority="low">
-        <div class="doc-copy">
+        <div class="doc-copy rv rv-d1">
           <h3 class="h3 on-blue" id="doc-h">Our Doctors</h3>
           <p>Going beyond the needs and expectations of our patients is our philosophy, and in Dr. Havens’ skilled and dedicated hands, you’ll feel like the most important person in the room – because you are.</p>
           <a class="btn btn-white" href="/about-us/meet-the-doctors/">Learn More About Our Doctors</a>
@@ -181,7 +189,7 @@
     <div class="wrap aud-grid">
       <a class="card aud-card aud-adult" href="/services/braces-for-adults/"><img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="assets/img/adult-patients.webp" alt="" width="900" height="690" loading="lazy" decoding="async" fetchpriority="low"><span class="card-t">Adult Patients</span><span class="card-more">Learn More</span></a>
       <a class="card aud-card aud-seven" href="/services/braces-for-children/"><img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="assets/img/why-age-7.webp" alt="" width="900" height="1247" loading="lazy" decoding="async" fetchpriority="low"><span class="card-t">Why Age 7?</span><span class="card-more">Learn More</span></a>
-      <div class="goal"><h3 class="h3 on-blue goal-t">Our greatest goal is to provide the most individualized, comfortable, and effective orthodontic treatment.</h3></div>
+      <div class="goal"><h3 class="h3 on-blue goal-t rv">Our greatest goal is to provide the most individualized, comfortable, and effective orthodontic treatment.</h3></div>
     </div>
   </section>
 
@@ -189,7 +197,7 @@
   <section class="sec ourpatient" id="our-patient" aria-labelledby="op-h">
     <div class="wrap">
       <div class="op-panel">
-        <div class="op-copy">
+        <div class="op-copy rv">
           <h3 class="h3" id="op-h">Our Patient Is You</h3>
           <p>Because we believe that our patients deserve nothing but the best, we provide much more than just conventional orthodontic treatment.</p>
           <a class="btn btn-primary" href="/resources/smile-gallery/">See Real Results</a>

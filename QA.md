@@ -119,3 +119,34 @@ Every existing photo appears where it appears today. No new people imagery was a
 - **No real-device check.** Not tested on a physical iPhone or Android, or in Safari or Firefox. Lenis, sticky positioning and SVG all work there, but give it a quick pass on a phone before the pitch.
 - **Without JavaScript,** below-the-hero photos don't load, because they use observer-driven loading. All text, links and videos still work.
 - **Very short desktop windows** (under about 640 px tall) squeeze the hero smile. It scales down but stays legible.
+
+## Update 2026-10-17 (polish pass)
+
+**Story changes:**
+- **The smile has a face.** The teeth now sit inside a simple line-art mouth: navy outline, white lips, tooth tops tucked under the upper lip, so no gums are drawn.
+  - In the hero it's a relaxed, slightly crooked smile.
+  - In the finale, the mouth is waiting from the first frame as a dashed outline, firms up, and **breaks into a big smile with dimples** as the teeth finish aligning.
+  - "Start Smiling Again" now pays off at "Helping People Smile".
+- **The wire runs inside the mouth.** In both hero and finale it's drawn under the lips, so it reads as going in at the corner of the mouth and slipping out of it.
+
+**Wire and bracket details:**
+- The wire is 3 px navy with a thin white highlight, so it reads as metal rather than a pen line.
+- Each Havens Difference bracket gives off a soft blue **ping** ring as it clicks on.
+- Hovering or focusing a card makes its bracket on the wire pop and brighten.
+
+**Clean-up:**
+- "The Havens Difference" heading moved into the left column, so the wire runs straight down the centre instead of looping around it.
+- The finale stage no longer opens blank or shows a stray wire stub. Its wire only appears once the page wire reaches it.
+- Smoother approach curve into the finale. Tighter section spacing. Pinned finale 260vh → 235vh.
+- Headings, copy and photos fade up gently as they enter. CTAs and cards are excluded so the wire's measurements stay exact.
+- The hero has an inline SVG blob in the brand's own motif (blob, hatching, doodles) behind the smile. It's not a raster image, so it stays sharp and can't become the LCP element.
+
+**Re-measured:**
+
+| Check | Result |
+|---|---|
+| Lighthouse mobile ×2 | Perf 99, A11y 100, Best practices 100, LCP 1.81–1.84 s (H1), CLS 0, TBT 0 |
+| Lighthouse desktop | 100 / 100 / 100, LCP 0.4 s (H1) |
+| Finale at 4× CPU throttle | 503 frames, 99th percentile 16.8 ms, **0 frames over 20 ms** |
+
+The recordings in `media/` were re-captured.

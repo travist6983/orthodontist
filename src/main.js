@@ -31,13 +31,14 @@ function buildHero() {
   smileDefs(el('defs', {}, svg));
   const sr = hero.stage.getBoundingClientRect();
   const b = hero.box.getBoundingClientRect();
-  const k = Math.min(b.width / (G.mob ? 372 : 330), b.height / 96);
+  // fit the whole mouth (lips + corners ≈ 470 units wide), not just the teeth
+  const k = Math.min(b.width / (G.mob ? 476 : 440), b.height / 128);
   const cx = b.left - sr.left + b.width / 2, cy = b.top - sr.top + b.height / 2 - 34 * k;
   hero.k = k; hero.cx = cx; hero.cy = cy;
   svg.setAttribute('viewBox', `0 0 ${sr.width} ${sr.height}`);
   svg.setAttribute('width', sr.width); svg.setAttribute('height', sr.height);
   const g = el('g', { transform: `translate(${cx.toFixed(1)} ${cy.toFixed(1)}) scale(${k.toFixed(4)})` }, svg);
-  hero.arch = new Arch(g, { brackets: false });
+  hero.arch = new Arch(g, { brackets: false, id: 'hero' });
   const bp = hero.arch.layout(0);
   // wire: right end → through every bracket line (right to left) → left end → drops to the page-wire start
   const S = (p) => [cx + p.x * k, cy + p.y * k];
@@ -57,6 +58,9 @@ function buildHero() {
   hero.restLen = hero.sm.S[li] + 26 * k;
   hero.wire = el('path', { class: 'wire hero-wire', fill: 'none' }, svg);
   hero.bks = hero.mat.map(() => { const n = el('g', { class: 'bk' }, svg); n.innerHTML = BRACKET_SVG(false); return n; });
+  // lips sit above the wire, so the wire reads as running inside the mouth and out at the corner
+  hero.arch.makeLips(el('g', { transform: g.getAttribute('transform') }, svg));
+  hero.arch.smile(0.16);
   hero.svg = svg;
   renderHero(RM ? 0 : hero.u, true);
 }
@@ -83,6 +87,7 @@ function renderHero(u, force) {
   });
   const gh = seg(u, 0.14, 0.62);
   hero.arch.g.style.setProperty('--ghost', gh.toFixed(3));
+  hero.arch.lips.style.setProperty('--ghost', (gh * 0.85).toFixed(3));
 }
 
 // ======================================================================= PAGE WIRE
@@ -99,15 +104,15 @@ function buildRoute() {
   if (!g.mob) {
     const gl = Math.max(26, phil.left / 2), gr = Math.min(g.W - 26, (test.right + g.W) / 2);
     const gapX = (adult.right + seven.left) / 2;
-    const h2 = r('#diff-h');
-    pts.push([X0, heroB], [X0, heroB + 30], [h2.right + 40, Y(h2, 0.5)], [X0, Y(cardsR, 0) + 10], [X0, Y(cardsR, 0.5)], [X0, Y(cardsR, 1) + 10]);
+    pts.push([X0, heroB], [X0, Y(cardsR, 0.02)], [X0, Y(cardsR, 0.5)], [X0, Y(cardsR, 1) + 10]);
     pts.push([lerp(X0, gl, 0.6), Y(phil, 0) - 70], [gl, Y(phil, 0.2)], [gl, Y(phil, 0.8)], [gl, Y(phil, 1) + 60]);
     const uy = Y(sched, 1) + 15;
     pts.push([gl, uy - 70], [gl + 60, uy], [sched.left - 6, uy + 1], [sched.left + sched.width / 2, uy - 3], [sched.right + 6, uy + 1], [Math.min(g.W - 60, sched.right + 120), uy + 24]);
     pts.push([gr, Math.max(uy + 140, Y(testS, 0) - 20)], [gr, Y(test, 0.3)], [gr, Y(test, 1)], [gr, Y(doc, 0.5)], [gr, Y(doc, 1) + 24]);
     pts.push([lerp(gr, gapX, 0.7), Y(aud, 0) - 20], [gapX, Y(aud, 0) + 30], [gapX, Y(aud, 0.6)], [gapX, Y(aud, 1) + 10]);
     const fx = g.finEntryX;
-    pts.push([gapX, Y(op, 0.5)], [lerp(gapX, fx, 0.5), Y(op, 1) + 30], [fx, Y(fin, 0) - 40], [fx, Y(fin, 0) + 2]);
+    const gapToFin = Y(fin, 0) - Y(op, 1);
+    pts.push([gapX, Y(op, 0.5)], [gapX, Y(op, 1) + 6], [lerp(gapX, fx, 0.55), Y(op, 1) + gapToFin * 0.55], [fx, Y(fin, 0) - 24], [fx, Y(fin, 0) + 2]);
   } else {
     // phones: one left gutter, straight down (the CTA stack is too tight for an underline)
     const gx = 18;
@@ -158,6 +163,7 @@ function buildWire() {
   smileDefs(el('defs', {}, layer));
   W.halo = el('path', { class: 'wire-halo', fill: 'none' }, layer);
   W.path = el('path', { class: 'wire page-wire', fill: 'none' }, layer);
+  W.hi = el('path', { class: 'wire-hi', fill: 'none' }, layer);
   W.tip = el('circle', { class: 'wire-tip', r: 3.2 }, layer);
   buildRoute();
   // brackets: 3 riding in from the hero, then one per Havens Difference card
@@ -173,7 +179,12 @@ function buildWire() {
     const iy = docY(ir) + ir.height / 2, ix = ir.left + ir.width / 2;
     const s = W.route.S[idxAtY(iy)];
     const n = el('g', { class: 'bk' + (j === 4 ? ' bk-c' : '') }, layer); n.innerHTML = BRACKET_SVG(j === 4);
-    const o = { n, s, card, icon, iy, ix, scale: G.mob ? 1.15 : 1.5 };
+    const ring = el('circle', { class: 'bk-ping', r: 10 }, layer);
+    layer.insertBefore(ring, n);
+    card.onmouseenter = () => n.classList.add('hot');
+    card.onmouseleave = () => n.classList.remove('hot');
+    card.querySelector('a').onfocus = card.onmouseenter; card.querySelector('a').onblur = card.onmouseleave;
+    const o = { n, s, card, icon, iy, ix, ring, scale: G.mob ? 1.15 : 1.5 };
     W.bks.push(o);
     return o;
   });
@@ -189,11 +200,11 @@ function renderWire(force) {
   const R = W.route;
   const iTip = idxAtY(read);
   const iTop = idxAtY(sy - 160);
-  if (iTip <= 1 || R.pts[0][1] > read) { W.path.setAttribute('d', ''); W.halo.setAttribute('d', ''); W.tip.style.opacity = 0; }
+  if (iTip <= 1 || R.pts[0][1] > read) { W.path.setAttribute('d', ''); W.halo.setAttribute('d', ''); W.hi.setAttribute('d', ''); W.tip.style.opacity = 0; }
   else {
     let d = '';
     for (let i = Math.max(0, iTop - 2); i <= iTip; i++) { const p = wireXY(i, A); d += (d ? 'L' : 'M') + p[0].toFixed(1) + ',' + p[1].toFixed(1); }
-    W.path.setAttribute('d', d); W.halo.setAttribute('d', d);
+    W.path.setAttribute('d', d); W.halo.setAttribute('d', d); W.hi.setAttribute('d', d);
     const t = wireXY(iTip, A);
     W.tip.setAttribute('cx', t[0].toFixed(1)); W.tip.setAttribute('cy', t[1].toFixed(1));
     W.tip.style.opacity = iTip >= R.pts.length - 2 ? 0 : 1;
@@ -217,6 +228,9 @@ function renderWire(force) {
     b.n.style.opacity = c > 0.02 ? 1 : 0;
     b.n.setAttribute('transform', `translate(${x.toFixed(1)} ${y.toFixed(1)}) rotate(${(ang * e).toFixed(1)}) scale(${(b.scale * pop).toFixed(3)})`);
     b.icon.style.opacity = (1 - seg(c, 0.05, 0.4)).toFixed(2);
+    const pk = seg(c, 0.84, 1);
+    if (pk > 0 && pk < 1) { b.ring.setAttribute('cx', p.x.toFixed(1)); b.ring.setAttribute('cy', p.y.toFixed(1)); b.ring.setAttribute('r', (8 + 22 * E.o(pk)).toFixed(1)); b.ring.style.opacity = ((1 - pk) * 0.8).toFixed(2); }
+    else b.ring.style.opacity = 0;
     b.card.classList.toggle('is-clicked', c >= 1);
   }
 }
@@ -233,12 +247,13 @@ function buildFinale() {
   svg.setAttribute('viewBox', `0 0 ${sr.width} ${sr.height}`);
   svg.setAttribute('width', sr.width); svg.setAttribute('height', sr.height);
   // fit the arch, and keep the entry drop (left of the first tooth) on screen
-  const k = Math.min(b.width / (G.mob ? 420 : 360), b.height / 112, (sr.width / 2 - 14) / 232);
+  const k = Math.min(b.width / (G.mob ? 500 : 500), b.height / 150, (sr.width / 2 - 14) / 248);
   const cx = sr.width / 2, cy = b.top - sr.top + b.height / 2 - 36 * k;
-  Object.assign(fin, { k, cx, cy, svg });
+  Object.assign(fin, { k, cx, cy, svg, top: docY(fin.sec.getBoundingClientRect()) });
   const g = el('g', { transform: `translate(${cx.toFixed(1)} ${cy.toFixed(1)}) scale(${k.toFixed(4)})` }, svg);
   fin.g = g;
-  fin.arch = new Arch(g, { brackets: true });
+  fin.arch = new Arch(g, { brackets: true, id: 'fin' });
+  fin.arch.makeLips(el('g', { transform: g.getAttribute('transform') }, svg));
   fin.wire = fin.arch.wire; fin.wire.setAttribute('class', 'wire fin-wire'); // order: teeth → wire → brackets
   // light sweep clipped to the aligned teeth
   const clip = el('clipPath', { id: 'alignedTeeth' }, defs);
@@ -251,13 +266,20 @@ function buildFinale() {
 }
 function renderFinale(v, force) {
   if (!fin.arch) return;
-  if (!force && Math.abs(v - fin.rv) < 0.0005) return;
-  fin.rv = v;
+  // before the pin, the stage's top edge is measured from scroll (no layout reads per frame)
+  const stTop = Math.max(0, fin.top - window.scrollY);
+  const meet = clamp((G.H * 0.66 - stTop) / 140);
+  if (!force && Math.abs(v - fin.rv) < 0.0005 && Math.abs(meet - fin.rm) < 0.002) return;
+  fin.rv = v; fin.rm = meet;
   const k = fin.k, cx = fin.cx, cy = fin.cy;
   const a = E.io(seg(v, 0.52, 0.84));
   const cur = fin.arch.layout(a);
   // ghost → solid teeth
   const ghostIn = seg(v, 0.36, 0.52), fill = seg(v, 0.6, 0.88);
+  // the mouth is waiting from the first frame (dashed), firms up, then breaks into a smile as the teeth finish aligning
+  fin.arch.smile(lerp(0.1, 1, E.io(seg(v, 0.74, 0.96))));
+  fin.arch.lips.style.setProperty('--ghost', (1 - seg(v, 0.04, 0.42)).toFixed(3));
+  fin.arch.lips.style.opacity = lerp(0.55, 1, seg(v, 0, 0.3)).toFixed(3);
   fin.arch.teethG.style.opacity = ghostIn.toFixed(3);
   fin.arch.g.style.setProperty('--ghost', (1 - fill).toFixed(3));
   // brackets glide down the incoming wire (a vertical drop into the arch's left end), left to right onto their teeth
@@ -280,7 +302,7 @@ function renderFinale(v, force) {
   const Rend = [fin.aligned[9].x + 30, fin.aligned[9].y - 6];
   const reach = seg(v, 0, 0.2);
   // the wire is already hanging into the stage at v = 0, then threads along the arch
-  const P = [S([ex, topY]), S([ex, lerp(topY + 120 / k, L.y - 30, reach)])];
+  const P = [S([ex, topY]), S([ex, lerp(topY + (meet * 120) / k, L.y - 30, reach)])];
   if (reach > 0) {
     P.push(S([L.x, L.y]));
     const arch = [...ctrl, Rend];
@@ -360,9 +382,16 @@ function initLazy() {
   const io = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) { load(e.target); io.unobserve(e.target); } }), { rootMargin: '900px 0px' });
   imgs.forEach((i) => io.observe(i));
 }
+function initReveal() {
+  const els = $$('.rv');
+  if (RM || !('IntersectionObserver' in window)) return els.forEach((e) => e.classList.add('in'));
+  const io = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { rootMargin: '0px 0px -12% 0px' });
+  els.forEach((e) => io.observe(e));
+}
 function boot() {
   initUI();
   initLazy();
+  initReveal();
   initVideos();
   if (RM) {
     layout(true);
